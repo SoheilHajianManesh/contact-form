@@ -18,6 +18,8 @@
                     ></span>
                       <input
                         wire:model="username"
+                        value="Username"
+
                         type="text"
                         class="form-control border-0 border-bottom border-3 pb-5 rounded-0 pt-5"
                         id="floatingInputGroup1"
@@ -33,6 +35,7 @@
                     ></span>
                       <input
                         wire:model="password"
+                        value="password"
                         type="text"
                         class="form-control border-0 border-bottom border-3 pb-5 rounded-0 pt-5"
                         id="floatingInputGroup1"
@@ -58,9 +61,13 @@
                 @if($persons)
                 <div class="col-8 mt-3">
                   <ul>
-                   @foreach($persons as $person)
-                      <li>{{$person[0]}} {{$person[1]}}</li>
-                   @endforeach
+                   @for($i=0 ; $i<$counter ; $i++)
+                    <li>
+                    {{$persons[$i][0]}} {{$persons[$i][1]}}</li>
+                    @if($i==9)
+                      @break;
+                    @endif                                      
+                   @endfor
                   </ul>
                 </div>
                 @endif
