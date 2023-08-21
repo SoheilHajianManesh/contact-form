@@ -15,6 +15,7 @@ class login extends Component
 
 
 	public function addPerson(){
+		
 		$this->validate([
 		'username' => 'required|min:3',
         'password' => 'required|min:3', 
