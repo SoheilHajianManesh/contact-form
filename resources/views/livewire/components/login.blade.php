@@ -1,4 +1,14 @@
 <div>
+   @if($errors->count())
+              @foreach($errors->all() as $err)
+              <div class="alert alert-danger" role="alert">{{$err}}
+              </div>
+              @endforeach
+              @php
+                $username="";
+                $password="";
+              @endphp
+    @endif 
 <form class="row justify-content-center" wire:submit.prevent="addPerson">
             
                 <div class="col-12 my-3">
@@ -9,7 +19,8 @@
                     class="mx-auto d-block"
                   />
                 </div>
-                <div class="col-12 text-center fs-1 fw-bold">WELCOME</div>
+                <div class="col-12 text-center fs-1 fw-bold">WELCOME
+                </div>
                 <div class="col-8 input-height my-3">
                   <div class="input-group mt-3">
                     <span
@@ -55,19 +66,18 @@
                     type="submit"
                     class="btn w-100 rounded-pill btn-lg btn-color-1 text-white fw-bold"
                     value="LOGIN"
+                    id="errorToast"
                     {{-- wire:click.prevent="show()" --}}
                   />
+
                 </div>
                 @if($persons)
                 <div class="col-8 mt-3">
                   <ul>
-                   @for($i=0 ; $i<$counter ; $i++)
+                   @foreach(array_chunk($persons,4)[0] as $person)
                     <li>
-                    {{$persons[$i][0]}} {{$persons[$i][1]}}</li>
-                    @if($i==9)
-                      @break;
-                    @endif                                      
-                   @endfor
+                    {{$person[0]}} {{$person[1]}}</li>
+                   @endforeach
                   </ul>
                 </div>
                 @endif
